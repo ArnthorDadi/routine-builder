@@ -4,7 +4,7 @@ import Image from "next/image";
 import { RequirementGroupContext } from "@src/app/apparatus/providers";
 
 type CoPListProps = {
-  elementList: ElementType[];
+  elementList: (ElementType | Omit<ElementType, "element_alphabetic_value">)[];
 };
 
 export const CoPList: React.FC<CoPListProps> = ({ elementList }) => {
@@ -72,7 +72,9 @@ export const CoPGroupBanner: React.FC<CoPGroupBannerProps> = ({
   );
 };
 
-type CoPElementProps = { element: ElementType };
+type CoPElementProps = {
+  element: ElementType | Omit<ElementType, "element_alphabetic_value">;
+};
 
 export const CoPElement: React.FC<CoPElementProps> = ({ element }) => {
   return (
