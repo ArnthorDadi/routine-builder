@@ -81,19 +81,22 @@ const Input: React.FC<InputProps> = ({
     <div
       className={cn(
         className,
-        "flex min-w-[100px] gap-2 rounded px-2 py-2 hover:bg-white/20"
+        "flex min-w-[100px] gap-2 rounded pl-2 hover:bg-white/20"
       )}
     >
       <input
         id={label}
         name={label}
         value={label}
-        className={"text-white"}
+        className={"bg-green-500 py-2 pl-4 text-white"}
         checked={checked}
         onChange={(e) => onChange?.(e)}
         type="checkbox"
       />
-      <label htmlFor={label} className={"w-full select-none text-white"}>
+      <label
+        htmlFor={label}
+        className={"w-full select-none py-2 pr-2 text-white"}
+      >
         {label}
       </label>
     </div>
