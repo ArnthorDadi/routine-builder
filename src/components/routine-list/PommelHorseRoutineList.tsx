@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+"use client";
+
+import React from "react";
 import {
   ElementTypeWithId,
   ProcessedPommelHorseElementType,
@@ -6,6 +8,7 @@ import {
 import { useProcessPommelHorseRoutine } from "@components/routine-list/utlis";
 import { cn } from "@src/utils/Utility";
 import Image from "next/image";
+import { api } from "@src/utils/api";
 
 type PommelHorseRoutineListProps = {
   routine: ElementTypeWithId[];
@@ -16,16 +19,22 @@ export const PommelHorseRoutineList: React.FC<PommelHorseRoutineListProps> = ({
   routine,
   className,
 }) => {
+  const saveRoutine = api.routine.savePommelHorseRoutine.useMutation();
   const { UIRoutine, dScore } = useProcessPommelHorseRoutine(routine);
   return (
     <div
       id={"routine-list"}
-      className={cn(className, "flex flex-col gap-2 bg-[#176B87] px-8 py-4")}
+      style={{ borderTop: "2px solid #64CCC5" }}
+      className={cn(
+        className,
+        "flex flex-col gap-2 rounded-t-md bg-[#001C30] px-8 py-4"
+      )}
     >
       <div className={"flex flex-row items-center justify-between"}>
         <button
+          onClick={async () => await saveRoutine.mutate({ routine: UIRoutine })}
           type="button"
-          className="rounded-lg bg-[#001C30] px-5 py-2.5 text-sm font-medium text-white transition-all hover:bg-[#64CCC5] focus:outline-none focus:ring-4 focus:ring-blue-300"
+          className="rounded-lg border-2 border-[#64CCC5] px-5 py-2.5 text-sm font-bold text-[#64CCC5] transition-all hover:bg-[#64CCC5] hover:text-[#001C30] focus:outline-none focus:ring-4 focus:ring-blue-300"
         >
           Save
         </button>
