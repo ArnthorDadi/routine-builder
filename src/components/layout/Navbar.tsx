@@ -8,7 +8,7 @@ import { cn } from "@src/utils/Utility";
 import { usePathname } from "next/navigation";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
-import { Session } from "next-auth/src/index";
+import { Session } from "next-auth";
 import { Spinner } from "@components/Spinner";
 import { NavbarLink } from "@components/layout/utils/NavbarLink";
 
@@ -89,10 +89,15 @@ type UserMenuProps = {
 };
 
 const UserMenu: React.FC<UserMenuProps> = ({ session }) => {
-  const pathname = usePathname();
+  const selectedApparatus = useGetApparatusSelected();
   return (
     <div className={"flex items-center justify-between gap-4"}>
-      <NavbarLink href={Page.Routines}>My routines</NavbarLink>
+      <NavbarLink
+        href={Page.Routines}
+        className={cn(selectedApparatus === "routines" && "bg-white/10")}
+      >
+        My routines
+      </NavbarLink>
       <p className={"mr-4 text-white"}>@{session.user?.name}</p>
       <Image
         className="rounded-full border border-[#64CCC5]"
@@ -110,7 +115,7 @@ function useGetApparatusSelected() {
   const pathname = usePathname();
 
   const [selectedApparatus, setSelectedApparatus] = useState<
-    Apparatus | undefined
+    Apparatus | "routines" | undefined
   >(undefined);
 
   useEffect(() => {
@@ -135,6 +140,9 @@ function useGetApparatusSelected() {
         break;
       case Apparatus.high_bar:
         setSelectedApparatus(Apparatus.high_bar);
+        break;
+      case "routines":
+        setSelectedApparatus("routines");
         break;
       default:
         setSelectedApparatus(undefined);
