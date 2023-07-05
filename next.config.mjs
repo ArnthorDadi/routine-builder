@@ -19,6 +19,10 @@ const config = {
     defaultLocale: "en",
   },
   experimental: { appDir: true },
+  images: {
+    dangerouslyAllowSVG: true,
+    domains: ["images.unsplash.com", "api.dicebear.com", "cdn.pixabay.com"],
+  },
 };
 
 export default config;

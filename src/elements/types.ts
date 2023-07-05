@@ -42,3 +42,17 @@ export type ElementType = {
   img: StaticImageData;
   elementNr: number;
 };
+
+export type ElementTypeWithId = ElementType & {
+  id: string;
+};
+
+export type ProcessedPommelHorseElementType = ElementTypeWithId & {
+  doesElementCount: boolean;
+  flop?: {
+    index: number;
+    length: number;
+    numericValue: ElementType["element_numeric_value"];
+    alphabeticValue: ElementType["element_alphabetic_value"];
+  };
+};
