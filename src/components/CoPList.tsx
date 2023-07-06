@@ -55,14 +55,16 @@ export const CoPGroupBanner: React.FC<CoPGroupBannerProps> = ({
 }) => {
   return (
     <div className={"w-[99.6%] pt-4"}>
-      <p className={"pb-4 text-center text-xl text-white"}>
+      <p className={"select-none pb-4 text-center text-xl text-white"}>
         Group {group}: {group_name}
       </p>
       <div className={"grid w-full grid-cols-6"}>
         {["A", "B", "C", "D", "E", "F/G/H/I"].map((value) => (
           <p
             key={value}
-            className={"border-2 border-white py-2 text-center text-white"}
+            className={
+              "select-none border-2 border-white py-2 text-center text-white"
+            }
           >
             {value}
           </p>
@@ -76,6 +78,9 @@ type CoPElementProps = {
   element: ElementType | Omit<ElementType, "element_alphabetic_value">;
 };
 
+const IMG_WIDTH = 400;
+const IMG_ASPECT_RATIO = 1;
+
 export const CoPElement: React.FC<CoPElementProps> = ({ element }) => {
   return (
     <div className={"flex w-[16.6%] flex-col"}>
@@ -85,7 +90,10 @@ export const CoPElement: React.FC<CoPElementProps> = ({ element }) => {
         }
         key={`${element?.page_nr}-${element?.row}-${element?.col}`}
         src={element?.img}
+        width={IMG_WIDTH}
+        height={IMG_WIDTH * IMG_ASPECT_RATIO}
         alt={"pommel horse element"}
+        layout="responsive"
       />
       {/*<p*/}
       {/*  className={"text-center text-white"}*/}

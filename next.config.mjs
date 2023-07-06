@@ -21,7 +21,12 @@ const config = {
   experimental: { appDir: true },
   images: {
     dangerouslyAllowSVG: true,
-    domains: ["images.unsplash.com", "api.dicebear.com", "cdn.pixabay.com"],
+    domains: [
+      "images.unsplash.com",
+      "api.dicebear.com",
+      "cdn.pixabay.com",
+      "raw.githubusercontent.com",
+    ],
   },
 };
 

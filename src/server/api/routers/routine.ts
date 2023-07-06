@@ -17,6 +17,7 @@ export const routineRouter = createTRPCRouter({
             elementNr: z.number(),
           })
           .array(),
+        dScore: z.string(),
       })
     )
     .mutation(async ({ ctx, input }) => {
@@ -26,15 +27,20 @@ export const routineRouter = createTRPCRouter({
         },
       });
 
-      if (!user || user.email !== env.ADMIN_EMAIL) {
+      if (!user) {
         console.log("User not found!", {});
+        return;
+      }
+
+      if (user.email !== env.ADMIN_EMAIL) {
+        console.log("Unauthorized user", {});
         return;
       }
 
       await ctx.prisma.routine.create({
         data: {
           userId: user.id,
-          dScore: "4.9",
+          dScore: input.dScore ?? "4.9",
           apparatus: Apparatus.pommel_horse,
           routine: `[${input.routine.reduce((prev, curr, index) => {
             return `${prev}${!!prev ? ", " : ""}(${curr.group}, ${

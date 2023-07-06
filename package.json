@@ -8,6 +8,7 @@
     "postinstall": "prisma generate",
     "lint": "next lint",
     "start": "next start",
+    "generate-elements": "python3 scripts/csv2StaticClass.py",
     "local-db": "pscale connect board-game-clock init --port 3309",
     "db-push": "prisma db push"
   },
