@@ -39,7 +39,7 @@ export type ElementType = {
   row: number;
   col: number;
   /* This is an image */
-  img: StaticImageData;
+  img: string;
   elementNr: number;
 };
 
