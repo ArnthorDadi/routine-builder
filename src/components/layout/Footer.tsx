@@ -27,11 +27,11 @@ export const Footer: React.FC<FooterProps> = ({}) => {
       className={"flex min-w-full justify-center bg-[#176B87] py-2"}
     >
       <a
-        className={"text-[#DAFFFB]"}
+        className={"text-neutral"}
         href={"https://github.com/ArnthorDadi/routine-builder"}
         target={"_blank"}
       >
-        Made with ❤️, by <span className={"text-[#64CCC5]"}>@ArnthorDadi</span>
+        Made with ❤️, by <span className={"text-accent"}>@ArnthorDadi</span>
       </a>
     </footer>
   );

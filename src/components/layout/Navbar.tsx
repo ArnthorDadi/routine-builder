@@ -21,14 +21,14 @@ export const Navbar: React.FC<NavbarProps> = ({ className }) => {
     <nav
       style={{ borderBottom: "1px solid #176B87" }}
       className={cn(
-        className,
-        "flex flex-row justify-between bg-[#001C30] px-8 py-4"
+        "flex flex-row justify-between bg-background px-8 py-4",
+        className
       )}
     >
       <Link
         href={Page.Home}
         className={
-          "self-center whitespace-nowrap text-2xl font-semibold text-[#DAFFFB]"
+          "self-center whitespace-nowrap text-2xl font-semibold text-accent"
         }
       >
         Routine Builder
@@ -94,19 +94,24 @@ const UserMenu: React.FC<UserMenuProps> = ({ session }) => {
     <div className={"flex items-center justify-between gap-4"}>
       <NavbarLink
         href={Page.Routines}
-        className={cn(selectedApparatus === "routines" && "bg-white/10")}
+        className={cn(
+          selectedApparatus === "routines" && "bg-white/10",
+          "text-white"
+        )}
       >
         My routines
       </NavbarLink>
       <p className={"mr-4 text-white"}>@{session.user?.name}</p>
       <Image
-        className="rounded-full border border-[#64CCC5]"
+        className="rounded-full border-2 border-neutral"
         width={30}
         height={30}
         src={`https://api.dicebear.com/5.x/identicon/svg?seed=${session.user?.email}&scale=75`}
         alt="user photo"
       />
-      <NavbarLink onClick={() => signOut()}>Sign out</NavbarLink>
+      <NavbarLink className={"text-white"} onClick={() => signOut()}>
+        Sign out
+      </NavbarLink>
     </div>
   );
 };

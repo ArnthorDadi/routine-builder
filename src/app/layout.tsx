@@ -5,7 +5,6 @@ import { api } from "@src/utils/api";
 import { Navbar } from "@components/layout/Navbar";
 import { Footer } from "@components/layout/Footer";
 import Head from "next/head";
-import { Breadcrumbs } from "@components/layout/Breadcrumbs";
 import React from "react";
 
 // export const metadata = {

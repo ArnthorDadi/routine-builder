@@ -32,10 +32,9 @@ export const PommelHorseRoutineList: React.FC<PommelHorseRoutineListProps> = ({
     >
       <div className={"flex flex-row items-center justify-between"}>
         <button
-          onClick={async () =>
-            await saveRoutine.mutate({ routine: UIRoutine, dScore })
-          }
-          type="button"
+          onClick={async () => {
+            await saveRoutine.mutate({ routine: UIRoutine, dScore });
+          }}
           className="rounded-lg border-2 border-[#64CCC5] px-5 py-2.5 text-sm font-bold text-[#64CCC5] transition-all hover:bg-[#64CCC5] hover:text-[#001C30] focus:outline-none focus:ring-4 focus:ring-blue-300"
         >
           Save
@@ -57,7 +56,7 @@ type PommelHorseRoutineItemProps = {
 };
 
 const IMG_WIDTH = 375;
-const IMG_ASPECT_RATIO = 1;
+export const IMG_ASPECT_RATIO = 374 / 352;
 
 export const PommelHorseRoutineItem: React.FC<PommelHorseRoutineItemProps> = ({
   element,

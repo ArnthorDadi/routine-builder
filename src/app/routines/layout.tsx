@@ -1,17 +1,15 @@
 "use client";
 
-import React, { useContext } from "react";
-import { cn } from "@src/utils/Utility";
-import {
-  RequirementGroupContext,
-  RequirementGroupProvider,
-} from "@src/app/apparatus/providers";
-import { Breadcrumbs } from "@components/layout/Breadcrumbs";
+import React from "react";
 
 export default function RoutinesLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return <div className={""}>{children}</div>;
+  return (
+    <div className={"flex min-h-full min-w-full flex-1 flex-col"}>
+      {children}
+    </div>
+  );
 }

@@ -15,18 +15,21 @@ type NavbarLinkProps = (
   href?: string;
   className?: string;
 };
+
 export const NavbarLink: React.FC<NavbarLinkProps> = ({
   className,
   href,
   ...props
 }) => {
+  const style = cn(
+    "select-none rounded-full px-4 py-3 font-semibold text-accent no-underline transition hover:bg-white/20 flex justify-center items-center text-center",
+    className
+  );
+
   if (!href) {
     return (
       <button
-        className={cn(
-          className,
-          "select-none rounded-full px-4 py-3 font-semibold text-white no-underline transition hover:bg-white/20"
-        )}
+        className={style}
         {...(props as React.DetailedHTMLProps<
           React.ButtonHTMLAttributes<HTMLButtonElement>,
           HTMLButtonElement
@@ -38,10 +41,7 @@ export const NavbarLink: React.FC<NavbarLinkProps> = ({
   return (
     <Link
       href={href}
-      className={cn(
-        className,
-        "select-none rounded-full px-4 py-3 font-semibold text-white no-underline transition hover:bg-white/20"
-      )}
+      className={style}
       {...(props as Omit<ComponentProps<typeof Link>, "href" | "className">)}
     />
   );
