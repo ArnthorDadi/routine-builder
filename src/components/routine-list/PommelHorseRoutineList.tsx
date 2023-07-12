@@ -9,6 +9,7 @@ import { useProcessPommelHorseRoutine } from "@components/routine-list/utlis";
 import { cn } from "@src/utils/Utility";
 import Image from "next/image";
 import { api } from "@src/utils/api";
+import { SuccessToast } from "@components/toast/Toast";
 
 type PommelHorseRoutineListProps = {
   routine: ElementTypeWithId[];
@@ -34,6 +35,9 @@ export const PommelHorseRoutineList: React.FC<PommelHorseRoutineListProps> = ({
         <button
           onClick={async () => {
             await saveRoutine.mutate({ routine: UIRoutine, dScore });
+            SuccessToast("Saved Pommel Horse Routine!", {
+              toastId: "CreatedPommelHorseRoutine",
+            });
           }}
           className="rounded-lg border-2 border-[#64CCC5] px-5 py-2.5 text-sm font-bold text-[#64CCC5] transition-all hover:bg-[#64CCC5] hover:text-[#001C30] focus:outline-none focus:ring-4 focus:ring-blue-300"
         >
