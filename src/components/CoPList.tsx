@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { ElementType } from "@src/elements/types";
 import Image from "next/image";
 import { RequirementGroupContext } from "@src/app/apparatus/providers";
+import { IMG_ASPECT_RATIO } from "@components/routine-list/PommelHorseRoutineList";
 
 type CoPListProps = {
   elementList: (ElementType | Omit<ElementType, "element_alphabetic_value">)[];
@@ -79,7 +80,6 @@ type CoPElementProps = {
 };
 
 const IMG_WIDTH = 400;
-const IMG_ASPECT_RATIO = 1;
 
 export const CoPElement: React.FC<CoPElementProps> = ({ element }) => {
   return (
@@ -93,7 +93,6 @@ export const CoPElement: React.FC<CoPElementProps> = ({ element }) => {
         width={IMG_WIDTH}
         height={IMG_WIDTH * IMG_ASPECT_RATIO}
         alt={"pommel horse element"}
-        layout="responsive"
       />
       {/*<p*/}
       {/*  className={"text-center text-white"}*/}
