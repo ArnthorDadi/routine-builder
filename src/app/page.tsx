@@ -1,9 +1,7 @@
 "use client";
 
 import { ApparatusList } from "@src/elements/types";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { api } from "@src/utils/api";
 
 export default function Home() {
   return (

@@ -1,29 +1,21 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
+import { eventEmitter, EventType } from "@components/layout/utils/Emiter";
 
 type FooterProps = {};
 
 export const Footer: React.FC<FooterProps> = ({}) => {
-  // const [bottomMarginNumber, setBottomMarginNumber] = useState<
-  //   number | undefined
-  // >(undefined);
-
-  // useEffect(() => {
-  //   const subscription = setInterval(() => {
-  //     const bottomPadding =
-  //       document.getElementById("routine-list")?.clientHeight;
-  //     if (bottomPadding !== bottomMarginNumber) {
-  //       setBottomMarginNumber(bottomPadding);
-  //     }
-  //   }, 5000);
-  //   return () => clearInterval(subscription);
-  // }, []);
+  const [marginBottom, setMarginBottom] = useState(0);
+  useEffect(() => {
+    eventEmitter.addEventListener(EventType.MarginBottom, () =>
+      setMarginBottom(eventEmitter.getMarginBottom())
+    );
+  }, []);
 
   return (
     <footer
-      // style={{
-      //   marginBottom: !!bottomMarginNumber ? `${bottomMarginNumber}px` : "0px",
-      // }}
+      style={{ marginBottom }}
       className={"flex min-w-full justify-center bg-[#176B87] py-2"}
     >
       <a

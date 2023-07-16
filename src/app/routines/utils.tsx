@@ -90,9 +90,9 @@ const RoutinesAccordionItem: FC<RoutinesAccordionItemProps> = ({
             >
               <path
                 stroke="#64CCC5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 d="M9 5 5 1 1 5"
               />
             </svg>
@@ -105,7 +105,7 @@ const RoutinesAccordionItem: FC<RoutinesAccordionItemProps> = ({
         className={cn(!isOpen && "hidden")}
         aria-labelledby="accordion-flush-heading-1"
       >
-        <div className="flex flex-row gap-2 py-5">
+        <div className="flex flex-row flex-wrap gap-2 py-5">
           {routines && routines.length > 0
             ? routines.map((routine) => (
                 <RoutineTile key={routine.id} routine={routine} />
