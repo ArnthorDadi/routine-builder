@@ -1,5 +1,3 @@
-import { StaticImageData } from "next/image";
-
 export enum Apparatus {
   floor = "floor",
   pommel_horse = "pommel-horse",
@@ -54,5 +52,12 @@ export type ProcessedPommelHorseElementType = ElementTypeWithId & {
     length: number;
     numericValue: ElementType["element_numeric_value"];
     alphabeticValue: ElementType["element_alphabetic_value"];
+  };
+};
+
+export type CalculatePommelHorseDifficultyScoreElementType = ElementType & {
+  doesElementCount?: boolean;
+  flop?: {
+    elements: ElementType[];
   };
 };
