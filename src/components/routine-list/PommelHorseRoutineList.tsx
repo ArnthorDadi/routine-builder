@@ -5,15 +5,15 @@ import {
   ElementTypeWithId,
   ProcessedPommelHorseElementType,
 } from "@src/elements/types";
-import { useProcessPommelHorseRoutine } from "@components/routine-list/utlis";
 import { cn } from "@src/utils/Utility";
 import Image from "next/image";
 import { api } from "@src/utils/api";
 import { SuccessToast } from "@components/toast/Toast";
 import { eventEmitter } from "@components/layout/utils/Emiter";
+import { processPommelHorseRoutine } from "@src/utils/dScore";
 
 type PommelHorseRoutineListProps = {
-  routine: ElementTypeWithId[];
+  routine: ProcessedPommelHorseElementType[];
   className?: string;
 };
 
@@ -22,8 +22,18 @@ export const PommelHorseRoutineList: React.FC<PommelHorseRoutineListProps> = ({
   className,
 }) => {
   const saveRoutine = api.routine.savePommelHorseRoutine.useMutation();
-  const { UIRoutine, dScore } = useProcessPommelHorseRoutine(routine);
   const [isOpen, setIsOpen] = useState(false);
+  const [dScore, setDScore] = useState(0);
+  const [processedRoutine, setProcessedRoutine] = useState<
+    ProcessedPommelHorseElementType[]
+  >([]);
+
+  useEffect(() => {
+    const { routine: processedRoutine, dScore } =
+      processPommelHorseRoutine(routine);
+    setProcessedRoutine(processedRoutine);
+    setDScore(dScore);
+  }, [routine]);
 
   useEffect(() => {
     const routineDivHeight =
@@ -71,7 +81,7 @@ export const PommelHorseRoutineList: React.FC<PommelHorseRoutineListProps> = ({
         <div className={"flex flex-row items-center justify-between"}>
           <button
             onClick={async () => {
-              await saveRoutine.mutate({ routine: UIRoutine, dScore });
+              // await saveRoutine.mutate({ routine: processedRoutine, dScore });
               SuccessToast("Saved Pommel Horse Routine!", {
                 toastId: "CreatedPommelHorseRoutine",
               });
@@ -86,7 +96,7 @@ export const PommelHorseRoutineList: React.FC<PommelHorseRoutineListProps> = ({
         </div>
 
         <div className={"flex max-w-[100%] flex-row gap-4 overflow-auto"}>
-          {UIRoutine.map((element) => (
+          {processedRoutine.map((element) => (
             <PommelHorseRoutineItem key={element.id} element={element} />
           ))}
         </div>
